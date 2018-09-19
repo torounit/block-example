@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    depends_on:
+      - mysql
+    ports:
+      - 8282:80
+    environment:
+      WORDPRESS_DB_PASSWORD: wordpress
+      ABSPATH: /usr/src/wordpress/
+    volumes:
+      - wordpress:/var/www/html
+      - ./:/var/www/html/wp-content/plugins/block-example
+
+  cli:
+    image: wordpress:cli
+    user: xfs
+    env_file:
+      - .env
+    volumes:
+      - ./bin:/opt/bin
+      - wordpress:/var/www/html
+      - ./:/var/www/html/wp-content/plugins/block-example
+    command: >
+      sh /opt/bin/wait-for.sh mysql:3306 -t 60 -- sh /opt/bin/install.sh
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress_test
+
+volumes:
+  wordpress:
