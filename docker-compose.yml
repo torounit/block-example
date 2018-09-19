@@ -16,14 +16,12 @@ services:
   cli:
     image: wordpress:cli
     user: xfs
-    env_file:
-      - .env
     volumes:
       - ./bin:/opt/bin
       - wordpress:/var/www/html
       - ./:/var/www/html/wp-content/plugins/block-example
     command: >
-      sh /opt/bin/wait-for.sh mysql:3306 -t 60 -- sh /opt/bin/install.sh
+      sh /opt/bin/wait-for.sh mysql:3306 -t 60 -- sh /opt/bin/install.sh 8282
 
   mysql:
     image: mysql:5.7
