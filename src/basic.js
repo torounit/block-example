@@ -1,21 +1,17 @@
 'use strict';
-
-const { __ } = wp.i18n;
+const { __, setLocaleData } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const blockStyle = {
-	backgroundColor: '#900',
-	color: '#fff',
-	padding: '20px',
-};
+
+setLocaleData( window.block_example.localeData, 'block-example' );
 
 registerBlockType( 'block-example/basic', {
-	title: 'example',
+	title: 'Example',
 	icon: 'universal-access-alt',
-	category: 'layout',
-	edit() {
-		return <div style={ blockStyle }>Basic example with JSX! (editor)</div>;
+	category: 'example',
+	edit () {
+		return <div>Basic example with JSX! (editor)</div>;
 	},
-	save() {
-		return <div style={ blockStyle }>Basic example with JSX! (front)</div>;
+	save () {
+		return <div>Basic example with JSX! (front)</div>;
 	},
 } );
