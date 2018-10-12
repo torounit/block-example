@@ -8,10 +8,17 @@ registerBlockType( 'block-example/basic', {
 	title: 'Example',
 	icon: 'universal-access-alt',
 	category: 'example',
-	edit () {
-		return <div>Basic example with JSX! (editor)</div>;
+	styles: [
+		{ name: 'default', label: __( 'Rounded' ), isDefault: true },
+		{ name: 'outline', label: __( 'Outline' ) },
+		{ name: 'squared', label: __( 'Squared' ) },
+	],
+	edit ( { className, attributes, setAttributes, isSelected } ) {
+		return (
+			<div className={ className }>Basic example with JSX! (editor)</div>
+		);
 	},
-	save () {
-		return <div>Basic example with JSX! (front)</div>;
+	save ( { className, attributes, setAttributes, isSelected } ) {
+		return <div className={ className }>Basic example with JSX! (front)</div>;
 	},
 } );
