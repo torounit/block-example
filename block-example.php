@@ -19,7 +19,8 @@ add_action( 'init', function () {
 		'wp-i18n',
 		'wp-element',
 		'wp-editor',
-		'wp-edit-post'
+		'wp-edit-post',
+		'wp-components'
 	] );
 
 	wp_add_inline_script(
