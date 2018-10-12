@@ -1,24 +1,20 @@
 'use strict';
-import { __, setLocaleData } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
 
-setLocaleData( window.block_example.localeData, 'block-example' );
+import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'block-example/basic', {
 	title: 'Example',
 	icon: 'universal-access-alt',
 	category: 'example',
 	styles: [
-		{ name: 'default', label: __( 'Rounded' ), isDefault: true },
-		{ name: 'outline', label: __( 'Outline' ) },
-		{ name: 'squared', label: __( 'Squared' ) },
+		{ name: 'default', label: 'default', isDefault: true },
+		{ name: 'style1', label: 'スタイル1' },
+		{ name: 'style2', label: 'スタイル2' },
 	],
-	edit ( { className, attributes, setAttributes, isSelected } ) {
-		return (
-			<div className={ className }>Basic example with JSX! (editor)</div>
-		);
+	edit () {
+		return <div>Basic example with JSX! (editor)</div>;
 	},
-	save ( { className, attributes, setAttributes, isSelected } ) {
-		return <div className={ className }>Basic example with JSX! (front)</div>;
+	save () {
+		return <div>Basic example with JSX! (front)</div>;
 	},
 } );

@@ -88,6 +88,7 @@ module.exports = {
 			}
 		]
 	},
+	devtool: 'source-map',
 	externals,
 	resolve: {
 		extensions: ['.js', '.jsx']

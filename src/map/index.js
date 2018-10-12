@@ -4,6 +4,7 @@ import { __, setLocaleData } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, InspectorControls } from '@wordpress/editor';
 import { PanelBody, ToggleControl, SelectControl  } from '@wordpress/components';
+import edit from './edit'
 
 setLocaleData( window.block_example.localeData, 'block-example' );
 
@@ -13,30 +14,17 @@ registerBlockType( 'block-example/map', {
 	icon: 'location',
 	category: 'example',
 	attributes: {
-		query: {
+		keyword: {
 			type: 'string',
-			default: ''
+			default: '原宿駅'
 		},
 	},
-	edit ( { className, attributes, setAttributes, isSelected } ) {
-		let { foo, hoge } = attributes;
-		return [
-			<InspectorControls>
-				<PanelBody title="パネルのタイトル">
-				</PanelBody>
-			</InspectorControls>,
-			<div className={ className }>
-				<iframe src="https://maps.google.co.jp/maps?output=embed&q=原宿駅"></iframe>
-			</div>
-		];
-	},
-
+	edit,
 	save ( { className, attributes, isSelected } ) {
-		let { foo, hoge } = attributes;
+		let { keyword } = attributes;
 		return (
-			<aside className={ `${className ? className : ''} ${hoge ? 'hoge' : ''} ${foo}` }>
-				<InnerBlocks.Content/>
-			</aside>
+			<iframe src={`https://maps.google.co.jp/maps?output=embed&q=${keyword}`} />
+
 		);
 	}
 } );
