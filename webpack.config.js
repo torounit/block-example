@@ -55,7 +55,7 @@ const externals = {
 	moment: 'moment',
 	jquery: 'jQuery',
 	lodash: 'lodash',
-	'lodash-es': 'lodash',
+	'lodash-es': 'lodash'
 };
 
 [
@@ -64,11 +64,15 @@ const externals = {
 	...wordPressPackages,
 ].forEach( ( name ) => {
 	externals[`@wordpress/${ name }`] = {
-		this: ['wp', camelCaseDash( name )],
+		window: ['wp', camelCaseDash( name )],
 	};
 } );
 
 module.exports = {
+	output: {
+		library: ['wp', '[name]'],
+		libraryTarget: 'window',
+	},
 	mode: 'production',
 	module: {
 		rules: [

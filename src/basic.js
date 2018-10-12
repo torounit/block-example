@@ -1,6 +1,6 @@
 'use strict';
-const { __, setLocaleData } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+import { __, setLocaleData } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
 
 setLocaleData( window.block_example.localeData, 'block-example' );
 

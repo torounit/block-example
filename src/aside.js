@@ -1,8 +1,9 @@
 'use strict';
-const { __, setLocaleData } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { InnerBlocks, InspectorControls } = wp.editor;
-const { PanelBody, Panel, PanelRow, ToggleControl } = wp.components;
+
+import { __, setLocaleData } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks, InspectorControls } from '@wordpress/editor';
+import { PanelBody, ToggleControl, SelectControl  } from '@wordpress/components';
 
 setLocaleData( window.block_example.localeData, 'block-example' );
 
@@ -15,17 +16,32 @@ registerBlockType( 'block-example/aside', {
 		hoge: {
 			type: 'boolean',
 			default: false
-		}
+		},
+		foo: {
+			type: 'string',
+			default: 'none',
+		},
 	},
 	edit ( { className, attributes, setAttributes, isSelected } ) {
-		console.log( attributes );
+		let { foo, hoge } = attributes;
 		return [
 			<InspectorControls>
 				<PanelBody title="パネルのタイトル">
 					<ToggleControl
-						label={ wp.i18n.__( 'Hoge' ) }
-						checked={ attributes.hoge }
-						onChange={ () => setAttributes( { hoge: !attributes.hoge } ) }
+						label={ 'Hoge' }
+						checked={ hoge }
+						onChange={ () => setAttributes( { hoge: !hoge } ) }
+					/>
+					<SelectControl
+						label={ __( 'Foo' ) }
+						value={ undefined !== foo ? foo : 'none' }
+						// `undefined` is required for the foo attribute to be unset.
+						onChange={ ( value ) => setAttributes( { foo: ( 'none' !== value ) ? value : undefined } ) }
+						options={ [
+							{ value: 'buz', label: 'buz' },
+							{ value: 'bar', label: 'bar' },
+							{ value: 'buzz', label: 'buzz' },
+						] }
 					/>
 				</PanelBody>
 			</InspectorControls>,
@@ -35,9 +51,10 @@ registerBlockType( 'block-example/aside', {
 		];
 	},
 
-	save ( { className,attributes,  isSelected  } ) {
+	save ( { className, attributes, isSelected } ) {
+		let { foo, hoge } = attributes;
 		return (
-			<aside className={ `${className} ` + (attributes.hoge ? 'hoge' : '') }>
+			<aside className={ `${className ? className : ''} ${hoge ? 'hoge' : ''} ${foo}` }>
 				<InnerBlocks.Content/>
 			</aside>
 		);

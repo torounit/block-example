@@ -1,8 +1,8 @@
 'use strict';
 
-const { __, setLocaleData } = wp.i18n;
-const { registerBlockType } = wp.blocks;
-const { RichText } = wp.editor;
+import { __, setLocaleData } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { RichText } from '@wordpress/editor';
 
 setLocaleData( window.block_example.localeData, 'block-example' );
 
