@@ -1,19 +1,8 @@
-import { __, setLocaleData } from '@wordpress/i18n';
+
 import { BlockControls, InspectorControls } from '@wordpress/editor';
-
-import { Component, renderToString, Fragment } from '@wordpress/element';
-import {
-	Button,
-	Placeholder,
-	Spinner,
-	SandBox,
-	IconButton,
-	Toolbar,
-	PanelBody,
-	ToggleControl,
-} from '@wordpress/components';
-
-setLocaleData( window.block_example.localeData, 'block-example' );
+import { Component, Fragment } from '@wordpress/element';
+import { Button, Placeholder, IconButton, Toolbar, PanelBody, } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export default class Edit extends Component {
 	constructor () {

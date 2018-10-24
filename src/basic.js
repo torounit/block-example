@@ -11,10 +11,15 @@ registerBlockType( 'block-example/basic', {
 		{ name: 'style1', label: 'スタイル1' },
 		{ name: 'style2', label: 'スタイル2' },
 	],
-	edit () {
-		return <div>Basic example with JSX! (editor)</div>;
+
+	supports: {
+		align: [ 'wide', 'full' ],
 	},
-	save () {
-		return <div>Basic example with JSX! (front)</div>;
+
+	edit ( { className } ) {
+		return <div className={ className }>Basic example with JSX! (editor)</div>;
+	},
+	save ( { className } ) {
+		return <div className={ className }>Basic example with JSX! (front)</div>;
 	},
 } );

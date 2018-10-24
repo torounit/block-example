@@ -1,20 +1,3 @@
-/**
- * Given a string, returns a new string with dash separators converedd to
- * camel-case equivalent. This is not as aggressive as `_.camelCase` in
- * converting to uppercase, where Lodash will convert letters following
- * numbers.
- *
- * @param {string} string Input dash-delimited string.
- *
- * @return {string} Camel-cased string.
- */
-function camelCaseDash ( string ) {
-	return string.replace(
-		/-([a-z])/g,
-		( match, letter ) => letter.toUpperCase()
-	);
-}
-
 const entryPointNames = [
 	'blocks',
 	'components',
@@ -64,7 +47,7 @@ const externals = {
 	...wordPressPackages,
 ].forEach( ( name ) => {
 	externals[`@wordpress/${ name }`] = {
-		window: ['wp', camelCaseDash( name )],
+		window: ['wp', name],
 	};
 } );
 
