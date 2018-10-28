@@ -6,6 +6,10 @@
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-11",
+    "@fortawesome/free-brands-svg-icons": "^5.1.0-11",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "^0.1.0-11",
     "@wordpress/editor": "^4.0.1",
     "@wordpress/library-export-default-webpack-plugin": "^1.0.4",
     "babel-loader": "^8.0.2",
